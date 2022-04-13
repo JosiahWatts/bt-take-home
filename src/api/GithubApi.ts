@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { AccountType } from "../models/enums";
 import { Event, EventRaw } from "../models/event";
+import { Member, MemberRaw } from "../models/member";
 import { Organization, OrganizationRaw } from "../models/organization";
 import { Repository, RepositoryRaw } from "../models/repository";
 
@@ -45,6 +46,19 @@ export class GithubApi {
     const data = res.data.map(Event.fromRaw).sort((x, y) => {
       return y.createdAt.getTime() - x.createdAt.getTime();
     });
+
+    return data;
+  }
+
+  static async getMembers(
+    name: string,
+    type: AccountType = AccountType.ORG
+  ): Promise<Member[]> {
+    const res: AxiosResponse<MemberRaw[]> = await axios.get(
+      `${GithubApi.BASE_URL}/${type}/${name.toLocaleLowerCase()}/public_members`
+    );
+
+    const data = res.data.map(Member.fromRaw);
 
     return data;
   }

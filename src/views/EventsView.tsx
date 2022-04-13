@@ -1,26 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useMemo } from "react";
 import { GithubApi } from "../api/GithubApi";
+import { useAsync } from "../hooks/useAsync";
 import { Event } from "../models/event";
 
 export function EventsView() {
-  const [events, setEvents] = React.useState<Event[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(false);
-
-  useEffect(() => {
-    GithubApi.getEvents("BoomTownROI")
-      .then((events) => {
-        console.log(events);
-
-        setEvents(events);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+  const fn = useMemo(() => () => GithubApi.getEvents("BoomTownROI"), []);
+  const { value: events, status, error } = useAsync<Event[]>(fn);
 
   return (
     <div>
-      <h1>EventsView</h1>
+      <h1>{events?.length}</h1>
     </div>
   );
 }

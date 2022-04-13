@@ -1,29 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { GithubApi } from "./api/GithubApi";
 import { Navigation, Organization as OrganizationInfo } from "./components";
 import { Footer, Header } from "./components/layout";
+import { useAsync } from "./hooks/useAsync";
 import { Organization } from "./models/organization";
 import AppRoutes from "./routes";
 
 function App() {
-  const [info, setInfo] = React.useState<Organization>();
-  const [loading, setLoading] = React.useState(true);
-
-  useEffect(() => {
-    GithubApi.getOrganization("BoomtownROI")
-      .then((org) => {
-        setInfo(org);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  });
+  const fn = useMemo(() => () => GithubApi.getOrganization("BoomTownROI"), []);
+  const { value: organization } = useAsync<Organization>(fn);
 
   return (
     <div>
       <Header />
       <main>
-        <OrganizationInfo organization={info} />
+        {organization && <OrganizationInfo organization={organization} />}
         <Navigation />
         <AppRoutes />
       </main>
