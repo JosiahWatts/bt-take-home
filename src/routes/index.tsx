@@ -1,7 +1,7 @@
 import React from "react";
-import { RepositoriesView } from "../views/RepositoriesView";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { route } from "../models";
+import { RepositoriesView } from "../views/RepositoriesView";
 
 const routes: route[] = [
   {
@@ -12,13 +12,11 @@ const routes: route[] = [
 
 function AppRoutes() {
   return (
-    <Router>
-      <Routes>
-        {routes.map((route) => (
-          <Route path={route.path} key={route.path} element={route.component} />
-        ))}
-      </Routes>
-    </Router>
+    <Routes>
+      {routes.map((route) => (
+        <Route path={route.path} key={route.path} element={route.component} />
+      ))}
+    </Routes>
   );
 }
 
