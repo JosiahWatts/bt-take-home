@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { GithubApi } from "../api/GithubApi";
+import { RepositoryCard } from "../components";
+import { Repository } from "../models/repository";
 
 export function RepositoriesView() {
+  const [repos, setRepos] = React.useState<Repository[]>([]);
+  const [loading, setLoading] = React.useState(true);
+
+  useEffect(() => {
+    GithubApi.getRepositories("BoomtownROI")
+      .then((repos) => {
+        setRepos(repos);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <p>loading...</p>;
+  }
+
   return (
-    <div>
-      <h1>Repositories</h1>
-    </div>
+    <>
+      {repos.map((repo) => (
+        <RepositoryCard repository={repo} key={repo.id} />
+      ))}
+    </>
   );
 }
