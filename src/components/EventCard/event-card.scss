@@ -1,0 +1,38 @@
+.event-type,
+.event-id {
+  font-size: 12px;
+}
+
+.event-id {
+  color: var(--gray-6);
+}
+
+.event-type {
+  background-color: var(--orange-1);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-1);
+}
+
+.event-title {
+  line-height: 2;
+}
+
+.event-url {
+  color: var(--gray-7);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.event-metadata-container {
+  .event-metadata {
+    font-size: 14px;
+    margin-right: 1rem;
+
+    b {
+      font-weight: var(--font-weight-5);
+    }
+  }
+}

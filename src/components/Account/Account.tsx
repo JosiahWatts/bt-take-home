@@ -1,9 +1,9 @@
 import React from "react";
-import { Organization as OrganizationType } from "../models/organization";
-import "../styles/account.scss";
+import { Organization } from "../../models/organization";
+import "./account.scss";
 
 export interface AccountProps {
-  account?: OrganizationType;
+  account?: Organization;
 }
 
 export function Account(props: AccountProps) {
@@ -41,7 +41,7 @@ export function Account(props: AccountProps) {
               account.isVerified ? "verified" : "not-verified"
             }`}
           >
-            {account.isVerified ? "Verified" : "Not Verified"}
+            {account.isVerified ? "Account Verified" : "Account Not Verified"}
           </span>
           <span className="metadata">
             <b>Date Created:</b> {account.createdAt.toLocaleDateString()}

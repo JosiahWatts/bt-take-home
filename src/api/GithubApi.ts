@@ -5,6 +5,14 @@ import { Member, MemberRaw } from "../models/member";
 import { Organization, OrganizationRaw } from "../models/organization";
 import { Repository, RepositoryRaw } from "../models/repository";
 
+const getUrlTypeParam = (type: AccountType) => {
+  if (type === AccountType.ORG) {
+    return "orgs";
+  } else {
+    return "users";
+  }
+};
+
 export class GithubApi {
   static BASE_URL = "https://api.github.com";
 
@@ -13,7 +21,9 @@ export class GithubApi {
     type: AccountType = AccountType.ORG
   ): Promise<Organization> {
     const res: AxiosResponse<OrganizationRaw> = await axios.get(
-      `${GithubApi.BASE_URL}/${type}/${name.toLocaleLowerCase()}`
+      `${GithubApi.BASE_URL}/${getUrlTypeParam(
+        type
+      )}/${name.toLocaleLowerCase()}`
     );
 
     const data = Organization.fromRaw(res.data);
@@ -25,7 +35,9 @@ export class GithubApi {
     type: AccountType = AccountType.ORG
   ): Promise<Repository[]> {
     const res: AxiosResponse<RepositoryRaw[]> = await axios.get(
-      `${GithubApi.BASE_URL}/${type}/${name.toLocaleLowerCase()}/repos`
+      `${GithubApi.BASE_URL}/${getUrlTypeParam(
+        type
+      )}/${name.toLocaleLowerCase()}/repos`
     );
 
     const data = res.data
@@ -40,7 +52,9 @@ export class GithubApi {
     type: AccountType = AccountType.ORG
   ): Promise<Event[]> {
     const res: AxiosResponse<EventRaw[]> = await axios.get(
-      `${GithubApi.BASE_URL}/${type}/${name.toLocaleLowerCase()}/events`
+      `${GithubApi.BASE_URL}/${getUrlTypeParam(
+        type
+      )}/${name.toLocaleLowerCase()}/events`
     );
 
     const data = res.data.map(Event.fromRaw).sort((x, y) => {
@@ -55,11 +69,39 @@ export class GithubApi {
     type: AccountType = AccountType.ORG
   ): Promise<Member[]> {
     const res: AxiosResponse<MemberRaw[]> = await axios.get(
-      `${GithubApi.BASE_URL}/${type}/${name.toLocaleLowerCase()}/public_members`
+      `${GithubApi.BASE_URL}/${getUrlTypeParam(
+        type
+      )}/${name.toLocaleLowerCase()}/public_members`
     );
 
     const data = res.data.map(Member.fromRaw);
 
     return data;
+  }
+
+  static async getHooks(
+    name: string,
+    type: AccountType = AccountType.ORG
+  ): Promise<any> {
+    const res: AxiosResponse<any> = await axios.get(
+      `${GithubApi.BASE_URL}/${getUrlTypeParam(
+        type
+      )}/${name.toLocaleLowerCase()}/hooks`
+    );
+
+    return res.data;
+  }
+
+  static async getIssues(
+    name: string,
+    type: AccountType = AccountType.ORG
+  ): Promise<any> {
+    const res: AxiosResponse<any> = await axios.get(
+      `${GithubApi.BASE_URL}/${getUrlTypeParam(
+        type
+      )}/${name.toLocaleLowerCase()}/issues`
+    );
+
+    return res.data;
   }
 }

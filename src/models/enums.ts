@@ -1,4 +1,4 @@
 export enum AccountType {
-  ORG = "orgs",
-  USER = "users",
+  ORG = "Organization",
+  USER = "User",
 }

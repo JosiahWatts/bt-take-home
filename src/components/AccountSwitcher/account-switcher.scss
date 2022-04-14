@@ -1,0 +1,15 @@
+.switcher-form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  button[type="submit"] {
+    align-self: flex-end;
+  }
+
+  .radio-group {
+    display: flex;
+    gap: 1rem;
+  }
+}

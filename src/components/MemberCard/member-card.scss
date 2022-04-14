@@ -1,0 +1,32 @@
+.member-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .member-avatar {
+    width: 125px;
+    height: auto;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+  }
+}
+
+.member-id {
+  font-size: 12px;
+  color: var(--gray-6);
+}
+
+.member-name {
+  line-height: 2;
+}
+
+.member-url {
+  color: var(--gray-7);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

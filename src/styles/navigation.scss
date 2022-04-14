@@ -10,6 +10,7 @@ nav {
     list-style: none;
     margin: 0;
     padding: 0;
+    flex-wrap: wrap;
 
     .navlist-item {
       font-weight: var(--font-weight-5);
@@ -18,7 +19,7 @@ nav {
     .navlist-link {
       text-decoration: none;
       color: inherit;
-      padding: 0.75rem 1rem;
+      padding: 0.5rem 1rem;
       min-width: 100px;
       text-align: center;
       display: block;

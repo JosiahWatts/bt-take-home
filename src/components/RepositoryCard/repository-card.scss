@@ -1,0 +1,33 @@
+.repo-language,
+.repo-id {
+  font-size: 12px;
+}
+
+.repo-id {
+  color: var(--gray-6);
+}
+
+.repo-language {
+  background-color: var(--green-1);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-1);
+}
+
+.repo-title {
+  line-height: 2;
+}
+
+.repo-description {
+  color: var(--gray-7);
+}
+
+.repo-metadata-container {
+  .repo-metadata {
+    font-size: 14px;
+    margin-right: 1rem;
+
+    b {
+      font-weight: var(--font-weight-5);
+    }
+  }
+}

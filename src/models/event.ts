@@ -25,7 +25,7 @@ export class Event {
       raw.type,
       {
         name: raw.repo.name,
-        url: raw.repo.url,
+        url: `https://github.com/${raw.repo.name}`,
       },
       new Date(raw.created_at)
     );

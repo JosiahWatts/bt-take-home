@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { routes } from "../routes";
-import "../styles/navigation.scss";
+import { routes } from "../../routes";
+import "../../styles/navigation.scss";
 
 export function Navigation() {
   return (

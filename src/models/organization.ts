@@ -1,3 +1,5 @@
+import { AccountType } from "./enums";
+
 export class Organization {
   id: number;
   name: string;
@@ -6,6 +8,7 @@ export class Organization {
   createdAt: Date;
   updatedAt: Date;
   avatarUrl: string;
+  type: AccountType;
 
   constructor(
     id: number,
@@ -14,7 +17,8 @@ export class Organization {
     isVerified: boolean,
     createdAt: Date,
     updatedAt: Date,
-    avatarUrl: string
+    avatarUrl: string,
+    type: string
   ) {
     this.id = id;
     this.name = name;
@@ -23,6 +27,7 @@ export class Organization {
     this.createdAt = new Date(createdAt);
     this.updatedAt = new Date(updatedAt);
     this.avatarUrl = avatarUrl;
+    this.type = type as AccountType;
   }
 
   static fromRaw(raw: OrganizationRaw): Organization {
@@ -33,7 +38,8 @@ export class Organization {
       raw.is_verified,
       raw.created_at,
       raw.updated_at,
-      raw.avatar_url
+      raw.avatar_url,
+      raw.type
     );
   }
 }
@@ -46,4 +52,5 @@ export type OrganizationRaw = {
   created_at: Date;
   updated_at: Date;
   avatar_url: string;
+  type: string;
 };
