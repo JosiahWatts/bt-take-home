@@ -1,0 +1,22 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+
+  .title {
+    color: var(--blue-8);
+    font-size: var(--font-size-5);
+    font-weight: var(--font-weight-7);
+  }
+
+  .change-account-button {
+    color: var(--blue-6);
+    font-weight: var(--font-weight-5);
+    font-size: 14px;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

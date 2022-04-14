@@ -5,7 +5,11 @@ import { Event } from "../models/event";
 
 export function EventsView() {
   const fn = useMemo(() => () => GithubApi.getEvents("BoomTownROI"), []);
-  const { value: events, status, error } = useAsync<Event[]>(fn);
+  const { value: events, status } = useAsync<Event[]>(fn);
+
+  if (status === "pending") {
+    return <p>loading...</p>;
+  }
 
   return (
     <div>

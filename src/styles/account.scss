@@ -1,0 +1,52 @@
+.org-container {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.org-info-container {
+  flex: 1;
+
+  .id {
+    font-size: var(--font-size-0);
+    color: var(--gray-6);
+  }
+
+  .name {
+    font-size: var(--font-size-5);
+    font-weight: var(--font-weight-7);
+  }
+
+  .url {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--gray-6);
+    text-decoration: none;
+    font-weight: var(--font-weight-5);
+  }
+}
+
+.org-metadata-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  font-size: 12px;
+  max-width: 400px;
+
+  .is-verified {
+    font-weight: var(--font-weight-5);
+    color: var(--red-8);
+
+    &.verified {
+      color: var(--blue-7);
+    }
+  }
+
+  .metadata {
+    display: block;
+
+    b {
+      font-weight: var(--font-weight-5);
+    }
+  }
+}
