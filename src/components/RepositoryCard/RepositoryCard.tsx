@@ -20,7 +20,15 @@ export function RepositoryCard(props: RepositoryCardProps) {
         <span className="repo-id">#{repository.id}</span>
       </header>
       <div className="card-body">
-        <h2 className="repo-title">{repository.name}</h2>
+        <h2 className="repo-title">
+          <a
+            href={repository.htmlUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {repository.name}
+          </a>
+        </h2>
         <p className="repo-description">{repository.description}</p>
       </div>
       <footer className="card-footer">
